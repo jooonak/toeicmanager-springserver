@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,8 +17,12 @@ import com.toeic.dto.ExamDTO;
 import com.toeic.dto.WordDTO;
 import com.toeic.service.ExamService;
 
+import lombok.extern.java.Log;
+
+@CrossOrigin
 @RestController
 @RequestMapping("/exam/*")
+@Log
 public class ExamController {
 
 	@Inject
@@ -25,6 +30,7 @@ public class ExamController {
 	
 	@GetMapping("/")
 	public List<WordDTO> getList(){
+		log.info("list..." + service.getList());
 		return service.getList();
 	}
 	

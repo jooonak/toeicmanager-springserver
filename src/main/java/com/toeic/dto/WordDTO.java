@@ -13,5 +13,8 @@ public class WordDTO {
 	private int wno;
 	private String word;
 	private String meaning;
+	private String img;
+	private String sentence;
+	private int examcnt;
 	
 }
