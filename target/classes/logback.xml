@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- log4jdbc-log4j2 -->
+<configuration>
+	<logger name="jdbc.sqlonly"        level="INFO"/>
+    <logger name="jdbc.sqltiming"      level="INFO"/>
+    <logger name="jdbc.audit"          level="INFO"/>
+    <logger name="jdbc.resultset"      level="INFO"/>
+    <logger name="jdbc.resultsettable" level="INFO"/>
+    <logger name="jdbc.connection"     level="INFO"/>
+</configuration>
+<!-- /log4jdbc-log4j2 파일은 필요하나 의미는 없다... -->
