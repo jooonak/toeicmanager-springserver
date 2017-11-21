@@ -23,7 +23,7 @@ public class WordController {
 	@Inject
 	WordService service;
 	
-	@GetMapping("/vocabulary/{vno}/words/")
+	@GetMapping("/vocabulary/{vno}/words")
 	public List<WordDTO> getList(@PathVariable("vno") int vno){
 		return service.getList(vno);
 	}
@@ -33,12 +33,12 @@ public class WordController {
 		return service.getWord(vno, wno);
 	}
 	
-	@PostMapping("/vocabulary/{vno}/words/")
+	@PostMapping("/vocabulary/{vno}/words")
 	public void newWord(@PathVariable("vno") int vno, @RequestBody WordDTO word) {
 		service.newWord(vno, word);
 	}
 	
-	@PutMapping("/vocabulary/{vno}/words/")
+	@PutMapping("/vocabulary/{vno}/words")
 	public void updateWord(@PathVariable("vno") int vno, @RequestBody WordDTO word) {
 		//기본 단어장에 대한 수정은 프론트에서 막아야 함
 		service.updateWord(vno, word);
