@@ -19,7 +19,7 @@
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy">
 		</property>
 		<property name="url"
-			value="jdbc:log4jdbc:mysql://192.168.0.16/toeicmanager_db?useSSL=false"></property>
+			value="jdbc:log4jdbc:mysql://192.168.0.29/toeicmanager_db?useSSL=false"></property>
 		<property name="username" value="java96"></property>
 		<property name="password" value="java96"></property>
 	</bean>
