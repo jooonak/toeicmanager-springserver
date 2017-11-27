@@ -12,8 +12,11 @@ import lombok.ToString;
 public class ExamDTO {
 
 	private int eno;
-	private int wno;
-	private String result;
+	private String mid;
+	private int result;
+	private int total;
+	private String type;
 	private Date examDate;
+	private int startPoint;
 	
 }
