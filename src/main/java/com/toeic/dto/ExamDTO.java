@@ -15,7 +15,8 @@ public class ExamDTO {
 	private String mid;
 	private int result;
 	private int total;
-	private String type; //lean -> 학습, exam -> 시험
+	private int startPoint;
+	private String type; //lean -> 학습, exam -> 시험, review -> 복습
 	private Date examDate; //시험 볼 날짜
 	
 }

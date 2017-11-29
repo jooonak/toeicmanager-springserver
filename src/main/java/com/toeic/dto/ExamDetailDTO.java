@@ -1,18 +1,17 @@
 package com.toeic.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import java.sql.Date;
 
-@Getter
-@Setter
-@ToString
+import lombok.Data;
+
+@Data
 public class ExamDetailDTO {
-
-	private int dno;
+	
+	private int dto;
 	private int eno;
 	private int wno;
-	private String result; // o -> 정답 , x -> 오답
-	private int ncnt; // 틀린 횟수
-	
+	private String result;
+	private int ncnt;
+	private String mid;
+	private Date regdate;
 }

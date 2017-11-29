@@ -7,15 +7,14 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.toeic.dto.ExamDTO;
+import com.toeic.dto.VocaDTO;
 
 public interface ExamMapper {
 
-	@Select("select * from tbl_exam where date(examdate) = date(now())")
-	public List<ExamDTO> getTodayExam();
-	//추후 examdate를 nextexam으로 변경해야함
+	@Select("select * from tbl_exam where mid = #{mid}")
+	public List<ExamDTO> getEnoListByMid(String mid);
 	
-	@Insert("insert into tbl_exam(wno, result) values(#{wno}, #{result})")
-	public void doExam(ExamDTO exam);
+	public List<VocaDTO> getWordListByMid(ExamDTO exam);
 
 	@Update("update tbl_exam set result = #{result} where eno = #{eno}")
 	public void updateExam(ExamDTO exam);

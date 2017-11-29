@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 인터넷에 떠돌아다니는 예제 씨발! 다 틀렸다! array타입쓸 때는 index 안해도된다! -->
+<mapper namespace="com.toeic.mapper.ExamDetailMapper">
+	<update id="updateMiddleExamDetail" parameterType="arrayList">
+		update tbl_exam_detail
+		set 
+		result = case
+			<foreach collection="array" item="exam" index="index">
+				when wno = #{exam.wno} then #{exam.result}
+			</foreach>
+			else result 
+			end, 
+		ncnt = case
+			<foreach collection="array" item="exam" index="index">
+				when wno = #{exam.wno} then ncnt+1
+			</foreach>
+			else ncnt 
+			end 
+		where eno = #{array[0].eno}
+	</update>
+</mapper>
