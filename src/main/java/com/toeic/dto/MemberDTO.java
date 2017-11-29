@@ -2,6 +2,9 @@ package com.toeic.dto;
 
 import java.sql.Date;
 
+import lombok.Data;
+
+@Data
 public class MemberDTO {
 	private String mid;
 	private String mpw;
@@ -11,6 +14,11 @@ public class MemberDTO {
 	private Date toeic;
 	private Date pushAm;
 	private Date pushPm;
+	
+	/* 아래의 정보들은 회원의 시험 상태를 기록하는 변수들이며, 이는 회원 정보와 분리하여 관리할 필요가 있는 데이터들이다.
+	 * 추후 시스템의 성능향상을 위해 member테이블에서 분리(정규화)하여 관리할 예정이다.
+	*/
+	
 	//l은 learn의 약자이며, 현재 학습 상태(learn, lock, review)를 나타낸다.
 	private String lstatus;
 	private String lcnt;
@@ -21,4 +29,7 @@ public class MemberDTO {
 	private String todayAnmoCnt;
 	//현재 회원의 eno 지점을 기록하는 변수이다.
 	private int examPointer;
+	
+	//mysql상에는 없지만 비즈니스 로직 상 필요한 객체이다 즉 spring 로직상에서 필요한 객체이다.
+	private ExamDetailDTO[] examList;
 }

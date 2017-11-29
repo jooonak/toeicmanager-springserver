@@ -29,13 +29,12 @@ public class ExamServiceImpl implements ExamService {
 	@Override
 	public List<ExamDTO> getTodayExam() {
 		// TODO Auto-generated method stub
-		return eMapper.getTodayExam();
+		return null;
 	}
 	
 	@Override
 	public void doExam(ExamDTO exam) {
 		// TODO Auto-generated method stub
-		eMapper.doExam(exam);
 	}
 
 	@Override

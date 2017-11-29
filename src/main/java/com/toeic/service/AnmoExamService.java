@@ -13,7 +13,7 @@ public interface AnmoExamService {
 
 	public List<VocaDTO> getExamDetail(ExamDTO exam);
 	
-	public void updateMiddleExam(List<ExamDetailDTO> list, ExamDTO exam);
+	public void updateMiddleExam(ExamDetailDTO[] examList);
 
 	public void updateFinishedExam(List<ExamDetailDTO> list, ExamDTO exam);
 }
