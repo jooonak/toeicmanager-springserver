@@ -9,11 +9,11 @@ public class MemberDTO {
 	private String mid;
 	private String mpw;
 	private String name;
-	private int goal;
-	private int extra;
-	private Date toeic;
-	private Date pushAm;
-	private Date pushPm;
+	private int goal; //목표점수
+	private int extra; //추가 제공되는 단어장 점수
+	private Date toeic; //시험 날짜
+	private Date pushAm; //오전 푸쉬알림 날짜
+	private Date pushPm; //오후 푸쉬알림 날짜
 	
 	/* 아래의 정보들은 회원의 시험 상태를 기록하는 변수들이며, 이는 회원 정보와 분리하여 관리할 필요가 있는 데이터들이다.
 	 * 추후 시스템의 성능향상을 위해 member테이블에서 분리(정규화)하여 관리할 예정이다.
@@ -32,4 +32,5 @@ public class MemberDTO {
 	
 	//mysql상에는 없지만 비즈니스 로직 상 필요한 객체이다 즉 spring 로직상에서 필요한 객체이다.
 	private ExamDetailDTO[] examList;
+	
 }
