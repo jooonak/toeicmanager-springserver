@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.toeic.mapper.ExamMapper">
+	<select id="getWordListByMid" resultType="WordDTO">
+		select 
+		tbl_exam_detail.wno wno, word, meaning, img, sentence
+		from
+			(select 
+				* 
+			from 
+				tbl_exam_detail
+			where 
+				dno > 0 and 
+				mid = #{mid} and 
+				eno = #{eno} and
+			result = 'waiting') tbl_exam_detail
+		Left join 
+		    tbl_word
+		on tbl_exam_detail.wno = tbl_word.wno
+	</select>	
+</mapper>
