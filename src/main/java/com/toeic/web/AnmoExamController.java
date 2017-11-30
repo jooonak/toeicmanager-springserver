@@ -19,6 +19,7 @@ import com.toeic.dto.ExamDTO;
 import com.toeic.dto.ExamDetailDTO;
 import com.toeic.dto.MemberDTO;
 import com.toeic.dto.VocaDTO;
+import com.toeic.dto.WordDTO;
 import com.toeic.service.AnmoExamService;
 
 import lombok.extern.java.Log;
@@ -46,7 +47,7 @@ public class AnmoExamController {
 	}
 	
 	@GetMapping("/{eno}")
-	public List<VocaDTO> getExam (ExamDTO exam) {
+	public List<WordDTO> getExam (ExamDTO exam) {
 		//exam에 들어가는 데이터: mid, eno
 		exam.setMid("m1");	//test용
 		return service.getExamDetail(exam);

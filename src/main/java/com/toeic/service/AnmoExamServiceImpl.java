@@ -11,6 +11,7 @@ import com.toeic.dto.ExamDTO;
 import com.toeic.dto.ExamDetailDTO;
 import com.toeic.dto.MemberDTO;
 import com.toeic.dto.VocaDTO;
+import com.toeic.dto.WordDTO;
 import com.toeic.mapper.ExamDetailMapper;
 import com.toeic.mapper.ExamMapper;
 
@@ -30,7 +31,7 @@ public class AnmoExamServiceImpl implements AnmoExamService {
 	}
 
 	@Override
-	public List<VocaDTO> getExamDetail(ExamDTO exam) {
+	public List<WordDTO> getExamDetail(ExamDTO exam) {
 		return examMapper.getWordListByMid(exam);
 	}
 

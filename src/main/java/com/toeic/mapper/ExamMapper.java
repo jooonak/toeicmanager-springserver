@@ -10,13 +10,14 @@ import org.apache.ibatis.annotations.Update;
 import com.toeic.dto.ExamDTO;
 import com.toeic.dto.MemberDTO;
 import com.toeic.dto.VocaDTO;
+import com.toeic.dto.WordDTO;
 
 public interface ExamMapper {
 
 	@Select("select * from tbl_exam where mid = #{mid}")
 	public List<ExamDTO> getEnoListByMid(String mid);
 	
-	public List<VocaDTO> getWordListByMid(ExamDTO exam);
+	public List<WordDTO> getWordListByMid(ExamDTO exam);
 	
 	@Update("update tbl_exam set result = #{result} where eno = #{eno}")
 	public void updateExam(ExamDTO exam);

@@ -12,7 +12,7 @@ public interface AnmoExamService {
 	
 	public List<ExamDTO> getExam(String mid);
 
-	public List<VocaDTO> getExamDetail(ExamDTO exam);
+	public List<WordDTO> getExamDetail(ExamDTO exam);
 	
 	public void updateMiddleExam(MemberDTO member, Integer eno);
 
