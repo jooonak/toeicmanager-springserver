@@ -4,13 +4,15 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.toeic.dto.ExamDTO;
-import com.toeic.dto.ExamDetailDTO;
+import com.toeic.dto.MemberDTO;
 import com.toeic.dto.WordDTO;
 import com.toeic.mapper.ExamDetailMapper;
 import com.toeic.mapper.ExamMapper;
 
+@Transactional
 @Service
 public class AnmoExamServiceImpl implements AnmoExamService {
 	
@@ -31,13 +33,15 @@ public class AnmoExamServiceImpl implements AnmoExamService {
 	}
 
 	@Override
-	public void updateMiddleExam(ExamDetailDTO[] examList) {
-		examDetailMapper.updateMiddleExamDetail(examList);
+	public void updateMiddleExam(MemberDTO member, Integer eno) {
+		examDetailMapper.updateMiddleExamDetail(member, eno);
+		examMapper.updateResultByEno(eno, member.getExamList().length);
 	}
 
 	@Override
-	public void updateFinishedExam(List<ExamDetailDTO> list, ExamDTO exam) {
-		// TODO Auto-generated method stub
+	public void updateFinishedExam(MemberDTO member, Integer eno) {
+		updateMiddleExam(member, eno);
+		
 
 	}
 
