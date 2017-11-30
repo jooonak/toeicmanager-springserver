@@ -7,13 +7,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class WordDTO {
+public class ExamDetailDTO {
 
-	private int vno;
+	private int dno;
+	private int eno;
 	private int wno;
-	private String word;
-	private String meaning;
-	private String img;
-	private String sentence;
+	private String result; // o -> 정답 , x -> 오답
+	private int ncnt; // 틀린 횟수
 	
 }
