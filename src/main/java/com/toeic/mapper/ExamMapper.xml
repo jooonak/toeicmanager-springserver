@@ -7,7 +7,7 @@
 <mapper namespace="com.toeic.mapper.ExamMapper">
 	<select id="getWordListByMid" resultType="WordDTO">
 		select 
-		tbl_exam_detail.wno wno, word, meaning, img, sentence
+		dno, tbl_exam_detail.wno wno, word, meaning, img, sentence
 		from
 			(select 
 				* 
@@ -22,4 +22,4 @@
 		    tbl_word
 		on tbl_exam_detail.wno = tbl_word.wno
 	</select>	
-</mapper>
+</mapper> 

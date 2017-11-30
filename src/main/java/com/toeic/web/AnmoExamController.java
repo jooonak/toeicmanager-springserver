@@ -1,24 +1,20 @@
 package com.toeic.web;
 
-import java.util.Arrays;
 import java.util.List;
-
 import javax.inject.Inject;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.toeic.dto.ExamDTO;
 import com.toeic.dto.ExamDetailDTO;
 import com.toeic.dto.MemberDTO;
-import com.toeic.dto.VocaDTO;
+import com.toeic.dto.WordDTO;
 import com.toeic.service.AnmoExamService;
 
 import lombok.extern.java.Log;
@@ -41,14 +37,16 @@ public class AnmoExamController {
 	}
 	
 	@GetMapping("/{eno}")
-	public List<VocaDTO> getExam (ExamDTO exam) {
+	public List<WordDTO> getExam (ExamDTO exam) {
 		//exam에 들어가는 데이터: mid, eno
+		
 		exam.setMid("m1");
+		
 		return service.getExamDetail(exam);
 	}
 	
 	@PutMapping("/middle/{eno}")
-	public String updateMiddleExamInfo (@RequestBody MemberDTO member) {
+	public String updateMiddleExamInfo (@RequestBody MemberDTO member, @RequestBody ExamDetailDTO dto, @PathVariable("eno") int eno) {
 		//json의 배열형태의 데이터를 스프링에서 list형태로 받으려면 여러 작업을 해야한다(wapper class를 생성한다던지..) 그렇기 때문에 배열형태로 받는 것이 편리하다.
 		service.updateMiddleExam(member.getExamList());
 		return "success";
