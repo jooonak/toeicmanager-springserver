@@ -1,11 +1,8 @@
 package com.toeic.service;
 
 import java.util.List;
-
 import com.toeic.dto.ExamDTO;
-import com.toeic.dto.ExamDetailDTO;
 import com.toeic.dto.MemberDTO;
-import com.toeic.dto.VocaDTO;
 import com.toeic.dto.WordDTO;
 
 public interface AnmoExamService {
@@ -16,5 +13,5 @@ public interface AnmoExamService {
 	
 	public void updateMiddleExam(MemberDTO member, Integer eno);
 
-	public void updateFinishedExam(MemberDTO member, Integer eno);
+	public String updateFinishedExam(MemberDTO member, Integer eno);
 }

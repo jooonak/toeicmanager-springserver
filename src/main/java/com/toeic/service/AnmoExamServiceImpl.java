@@ -1,16 +1,14 @@
 package com.toeic.service;
 
 import java.util.List;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.toeic.dto.ExamDTO;
-import com.toeic.dto.ExamDetailDTO;
 import com.toeic.dto.MemberDTO;
-import com.toeic.dto.VocaDTO;
+
 import com.toeic.dto.WordDTO;
 import com.toeic.mapper.ExamDetailMapper;
 import com.toeic.mapper.ExamMapper;
@@ -32,7 +30,7 @@ public class AnmoExamServiceImpl implements AnmoExamService {
 
 	@Override
 	public List<WordDTO> getExamDetail(ExamDTO exam) {
-		return examMapper.getWordListByMid(exam);
+		return examMapper.getAnmoWordListByMid(exam);
 	}
 
 	@Override
@@ -42,10 +40,13 @@ public class AnmoExamServiceImpl implements AnmoExamService {
 	}
 
 	@Override
-	public void updateFinishedExam(MemberDTO member, Integer eno) {
+	public String updateFinishedExam(MemberDTO member, Integer eno) {
+		String status = (member.getExamPointer() - eno > 0)?"next": "end"; 
 		updateMiddleExam(member, eno);
-		
-
+		if(member.getExamPointer() == eno && member.getLstatus().equals("lock")) {
+			status = examMapper.updateAndCheckMemberStatus(member);
+		}
+		return status;
 	}
 
 }

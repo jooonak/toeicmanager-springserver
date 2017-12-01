@@ -23,4 +23,22 @@
 			end 
 		where eno = #{eno} and mid = #{member.mid}
 	</update>
+	
+	<update id="updateMiddleReviewExamDetail">
+		update tbl_exam_detail
+		set 
+		result = case
+			<foreach collection="member.examList" item="exam" index="index">
+				when wno = #{exam.wno} then #{exam.result}
+			</foreach>
+			else result 
+			end, 
+		ncnt = case
+			<foreach collection="member.examList" item="exam" index="index">
+				when wno = #{exam.wno} then ncnt+1
+			</foreach>
+			else ncnt 
+			end 
+		where result = 'x' and mid = #{member.mid}
+	</update>
 </mapper>
