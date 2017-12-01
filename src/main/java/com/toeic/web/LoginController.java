@@ -24,15 +24,14 @@ public class LoginController {
 
 	@PostMapping("/join")
 	public void join(@RequestBody MemberDTO dto) {
-		log.info("" + dto);
-		log.info("join@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-
+		
 		service.joinMember(dto);
 	}
 
 	@PostMapping("/")
 	public void login() {
 
+		
 		log.info("guest@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 	}
 
