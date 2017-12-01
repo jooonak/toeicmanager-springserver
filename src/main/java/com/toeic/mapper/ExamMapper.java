@@ -11,7 +11,7 @@ import com.toeic.dto.WordDTO;
 
 public interface ExamMapper {
 
-	@Select("select * from tbl_exam where mid = #{mid} and total != result order by eno")
+	@Select("select * from tbl_exam where mid = #{mid} and type = 'learn' and total >= result order by eno;")
 	public List<ExamDTO> getEnoListByMid(String mid);
 	
 	public List<WordDTO> getWordListByMid(ExamDTO exam);

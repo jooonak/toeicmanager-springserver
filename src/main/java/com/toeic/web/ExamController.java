@@ -21,7 +21,7 @@ import lombok.extern.java.Log;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/exams/*")
+@RequestMapping("/exam/*")
 @Log
 public class ExamController {
 

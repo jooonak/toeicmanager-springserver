@@ -18,20 +18,17 @@ import com.toeic.service.AnmoExamService;
 
 import lombok.extern.java.Log;
 
-
 // 추가 구현할 부분: 
 // 1. update method가 update service를 호출하기 이전 member의 lstatus를 확인하여 제대로 요청한 것인지 판단하는 구문 구현
-
 
 @Log
 @CrossOrigin
 @RestController
-@RequestMapping("/anmoexams/*")
+@RequestMapping("/learn/*")
 public class AnmoExamController {
 	
 	@Inject
 	private AnmoExamService service;
-	
 	
 	//시험에 대한 전반적인 정보(할당된 시험문제 량,시험당 등록된 날짜 등)
 	@GetMapping("/")
@@ -43,10 +40,8 @@ public class AnmoExamController {
 	@GetMapping("/{eno}")
 	public List<WordDTO> getExam (ExamDTO exam) {
 		//exam에 들어가는 데이터: mid, eno
-		exam.setMid("m1");	//test용
 		return service.getExamDetail(exam);
 	}
-	
 	
 	@PutMapping("/middle/{eno}")
 	public void updateMiddleExamInfo (@RequestBody MemberDTO member, @PathVariable("eno") Integer eno) {
