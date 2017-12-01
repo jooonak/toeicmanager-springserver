@@ -9,4 +9,5 @@ public interface ExamDetailMapper {
 	
 	public void updateMiddleExamDetail(@Param("member") MemberDTO member, @Param("eno") Integer eno);
 
+	public void updateMiddleReviewExamDetail(@Param("member") MemberDTO member);
 }
