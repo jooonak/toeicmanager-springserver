@@ -13,5 +13,5 @@ public interface AnmoExamService {
 	
 	public void updateMiddleExam(MemberDTO member, Integer eno);
 
-	public void updateFinishedExam(MemberDTO member, Integer eno);
+	public String updateFinishedExam(MemberDTO member, Integer eno);
 }

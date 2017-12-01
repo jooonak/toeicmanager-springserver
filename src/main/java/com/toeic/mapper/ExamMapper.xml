@@ -5,7 +5,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.toeic.mapper.ExamMapper">
-	<select id="getWordListByMid" resultType="WordDTO">
+	<select id="getAnmoWordListByMid" resultType="WordDTO">
 		select 
 		vno, tbl_exam_detail.wno wno, word, meaning, img, sentence
 		from
@@ -21,5 +21,40 @@
 		Left join 
 		    tbl_word
 		on tbl_exam_detail.wno = tbl_word.wno
-	</select>	
+	</select>
+	
+	
+	<select id="getNormalReviewWordListByMid" resultType="WordDTO">
+		select 
+		vno, tbl_review_detail.wno wno, word, meaning, img, sentence
+		from
+			(select 
+				* 
+			from 
+				tbl_exam_detail 
+			where 
+				result = 'x' and mid = #{mid} 
+			order by 
+				dno) tbl_review_detail
+		Left join 
+			tbl_word
+		on tbl_review_detail.wno = tbl_word.wno
+	</select>
+	
+	<select id="getReviewWordListByMid" resultType="WordDTO">
+		select 
+			vno, tbl_review_detail.wno wno, word, meaning, img, sentence
+		from
+			(select 
+				wno, (@rnum := @rnum + 1) - (select result from tbl_exam where eno = #{examPointer} and type = 'review') as rnum 
+			from 
+				tbl_exam_detail, ( select @rnum := 0 ) rnum
+			where 
+				dno > 0 and result = 'x' and mid = #{mid}
+			having rnum > 0
+			order by 
+			dno) tbl_review_detail
+		Left join tbl_word
+		on tbl_review_detail.wno = tbl_word.wno
+	</select>
 </mapper> 
