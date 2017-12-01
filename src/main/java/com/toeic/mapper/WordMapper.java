@@ -29,5 +29,5 @@ public interface WordMapper {
 	
 	@Select("select word.* from tbl_voca voca, tbl_word word where voca.vno = word.vno order by wno limit 0,20")
 	public List<WordDTO> getExamList();
-	//시험조건에 맞는 단어 리스트를 불러오는 메서드 -> word.vno를 파라미터로 받아야 하고, voca.owner와 user정보를 비교하는 구문과 user의 마지막 시험 정보로 가져올 단어의 시작 번호 지정하는 구문 추가필요
+
 }
