@@ -34,7 +34,7 @@ public class ReviewController {
 	public List<WordDTO> getReview (MemberDTO member) {
 		System.out.println("get==========="+member);
 		//mid 계속 암호화되서 따로 넣음
-		member.setMid("m1");
+		member.setMid("m3");
 		return service.getReviewDetail(member);
 	}
 	
@@ -43,6 +43,7 @@ public class ReviewController {
 	public void updateMiddleReviewInfo (@RequestBody MemberDTO member) {
 		//json의 배열형태의 데이터를 스프링에서 list형태로 받으려면 여러 작업을 해야한다(wapper class를 생성한다던지..) 그렇기 때문에 배열형태로 받는 것이 편리하다.
 		System.out.println("middle==========="+member);
+		System.out.println(member.getExamList()[member.getExamList().length-1].getWno());
 		service.updateMiddleReview(member);
 	}
 	
@@ -51,6 +52,9 @@ public class ReviewController {
 	public String updateFinishedReviewInfo (@RequestBody MemberDTO member) {
 		//update 구문 입력 후 현재 member의 상태와 eno값을 비교, 동일한 경우 member의 lstatus를 review로 변경
 		//변경 후 모든 review eno를 만드는 구문 동작
+		if(!member.getLstatus().equals("review")) {
+			return "reject: no review status";
+		}
 		return service.updateFinishedReview(member);
 	}
 

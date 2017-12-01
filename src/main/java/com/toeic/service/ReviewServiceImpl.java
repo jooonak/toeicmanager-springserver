@@ -11,6 +11,7 @@ import com.toeic.dto.MemberDTO;
 import com.toeic.dto.WordDTO;
 import com.toeic.mapper.ExamDetailMapper;
 import com.toeic.mapper.ExamMapper;
+import com.toeic.mapper.MemberMapper;
 
 @Transactional
 @Service
@@ -21,6 +22,9 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Inject
 	private ExamDetailMapper examDetailMapper;
+	
+	@Inject
+	private MemberMapper memberMapper;
 	
 	@Override
 	public List<WordDTO> getReviewDetail(MemberDTO member) {
@@ -37,14 +41,16 @@ public class ReviewServiceImpl implements ReviewService {
 	public void updateMiddleReview(MemberDTO member) {
 		examDetailMapper.updateMiddleReviewExamDetail(member);
 		if(member.getLstatus().equals("review")) {
-			examMapper.updateResultByEno(member.getExamPointer(), member.getExamList().length);
+			examMapper.updateResultByEno(member.getExamPointer(), member.getExamList().length, member.getExamList()[member.getExamList().length-1].getWno());
 		} 
 	}
 
 	@Override
 	public String updateFinishedReview(MemberDTO member) {
+		updateMiddleReview(member);
+		memberMapper.ChangeLstatusFromReviewToLearn(member.getMid());
 		// TODO Auto-generated method stub
-		return null;
+		return "learn";
 	}
 
 }
