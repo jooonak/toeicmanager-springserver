@@ -6,8 +6,11 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.toeic.dto.CycleDTO;
 import com.toeic.dto.ExamDTO;
+import com.toeic.dto.MemberDTO;
 import com.toeic.dto.WordDTO;
+import com.toeic.mapper.CycleMapper;
 import com.toeic.mapper.ExamMapper;
 import com.toeic.mapper.WordMapper;
 
@@ -15,32 +18,21 @@ import com.toeic.mapper.WordMapper;
 public class ExamServiceImpl implements ExamService {
 
 	@Inject
-	WordMapper wMapper;
-	
-	@Inject
-	ExamMapper eMapper;
+	CycleMapper cycleMapper;
 	
 	@Override
-	public List<WordDTO> getList() {
-		// TODO Auto-generated method stub
-		return wMapper.getExamList();
+	public List<CycleDTO> getCycleList(String mid) {
+		return cycleMapper.getCycleDTOListByMid(mid);
 	}
 
 	@Override
-	public List<ExamDTO> getTodayExam() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<WordDTO> getTodayExam(String mid) {
+		return cycleMapper.getTodayExamListByMid(mid);
 	}
 	
 	@Override
-	public void doExam(ExamDTO exam) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void updateExam(ExamDTO exam) {
-		// TODO Auto-generated method stub
-		eMapper.updateExam(exam);
+	public void updateTodayExam(MemberDTO member) {
+		cycleMapper.updateTodayExam(member);
 	}
 
 }

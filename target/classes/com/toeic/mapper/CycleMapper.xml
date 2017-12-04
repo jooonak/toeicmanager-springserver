@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.toeic.mapper.CycleMapper">
+	<select id="getCycleDTOListByMid" resultType="CycleDTO">
+		select 
+			dno, tbl_cycle.wno, vno, word, meaning,
+			mid, t1, t2, t3, t4, t5, 
+		score, nextcycle, lastexamdate, regdate
+		from 
+			(select * from tbl_cycle where mid = #{mid}) tbl_cycle
+		left join
+			(select 
+			vno, wno, word, meaning 
+			from tbl_word) tbl_word
+		on tbl_cycle.wno = tbl_word.wno
+		order by regdate
+	</select>
+	<select id="getTodayExamListByMid" resultType="WordDTO">
+		select 
+		tbl_cycle.wno wno, vno, word, meaning, img, sentence
+		from 
+			(select 
+			wno 
+			from 
+			tbl_cycle 
+			where mid = #{mid}
+			and 
+			curdate() >= nextcycle order by regdate) tbl_cycle
+		left join
+			(select 
+			vno, wno, word, meaning , img, sentence
+			from tbl_word) tbl_word
+		on tbl_cycle.wno = tbl_word.wno
+	</select>
+	<update id="updateTodayExam">
+		update tbl_cycle
+		inner join 
+		(select -1 as wno, 'dummy' as result
+		from dual
+		<foreach collection="member.examList" item="exam" index="index">
+			union all
+			select #{exam.wno}, #{exam.result}
+		</foreach>
+		) tbl_result 
+		on tbl_result.wno = tbl_cycle.wno 
+		set 
+			tbl_cycle.t1 = (case when tbl_cycle.cyclecnt = 0 then result else tbl_cycle.t1 end),
+			tbl_cycle.t2 = (case when tbl_cycle.cyclecnt = 1 then result else tbl_cycle.t2 end),
+			tbl_cycle.t3 = (case when tbl_cycle.cyclecnt = 2 then result else tbl_cycle.t3 end),
+			tbl_cycle.t4 = (case when tbl_cycle.cyclecnt = 3 then result else tbl_cycle.t4 end),
+			tbl_cycle.t5 = (case when tbl_cycle.cyclecnt = 4 then result else tbl_cycle.t5 end),
+		tbl_cycle.nextcycle = 
+			(case 
+			when tbl_cycle.cyclecnt = 0 then date(now() + INTERVAL 3 DAY)
+			when tbl_cycle.cyclecnt = 1 then date(now() + INTERVAL 7 DAY)
+			when tbl_cycle.cyclecnt = 2 then date(now() + INTERVAL 14 DAY)
+			when tbl_cycle.cyclecnt = 3 then date(now() + INTERVAL 31 DAY)
+			when tbl_cycle.cyclecnt = 4 then date(now() + INTERVAL 62 DAY)
+			else tbl_cycle.nextcycle
+			end),
+		tbl_cycle.score = 
+			(case 
+			when tbl_cycle.cyclecnt = 0 and result = 'o' then tbl_cycle.score + 10 
+			when tbl_cycle.cyclecnt = 1 and result = 'o' then tbl_cycle.score + 15 
+			when tbl_cycle.cyclecnt = 2 and result = 'o' then tbl_cycle.score + 15 
+			when tbl_cycle.cyclecnt = 3 and result = 'o' then tbl_cycle.score + 30 
+			when tbl_cycle.cyclecnt = 4 and result = 'o' then tbl_cycle.score + 30 
+			else tbl_cycle.score
+			end),
+		tbl_cycle.cyclecnt = tbl_cycle.cyclecnt + 1,
+		tbl_cycle.lastexamdate = date(now())
+		where tbl_cycle.mid = #{member.mid}
+	</update>
+</mapper> 
+

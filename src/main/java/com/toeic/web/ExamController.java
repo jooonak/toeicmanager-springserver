@@ -7,13 +7,16 @@ import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.toeic.dto.CycleDTO;
 import com.toeic.dto.ExamDTO;
+import com.toeic.dto.MemberDTO;
 import com.toeic.dto.WordDTO;
 import com.toeic.service.ExamService;
 
@@ -21,32 +24,27 @@ import lombok.extern.java.Log;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/exam/*")
+@RequestMapping("/exams/*")
 @Log
 public class ExamController {
 
 	@Inject
 	ExamService service;
 	
-	@GetMapping("/")
-	public List<WordDTO> getList(){
-		log.info("list..." + service.getList());
-		return service.getList();
+	@GetMapping("/all")
+	public List<CycleDTO> getList(String mid){
+		return service.getCycleList("m3");
 	}
 	
 	@GetMapping("/today")
-	public List<ExamDTO> getTodayExam(){
-		return service.getTodayExam();
+	public List<WordDTO> getTodayExam(String mid){
+		return service.getTodayExam("m3");		
 	}
 	
-	@PostMapping("/")
-	public void doExam(@RequestBody ExamDTO exam) {
-		service.doExam(exam);
-	}
 	
-	@PutMapping("/")
-	public void updateExam(@RequestBody ExamDTO exam) {
-		service.updateExam(exam);
+	@PutMapping("/today")
+	public void updateTodayExam(@RequestBody MemberDTO member) {
+		service.updateTodayExam(member);
 	}
 	
 }
