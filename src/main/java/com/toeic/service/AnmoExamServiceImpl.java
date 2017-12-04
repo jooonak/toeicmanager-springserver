@@ -36,7 +36,7 @@ public class AnmoExamServiceImpl implements AnmoExamService {
 	@Override
 	public void updateMiddleExam(MemberDTO member, Integer eno) {
 		examDetailMapper.updateMiddleExamDetail(member, eno);
-		examMapper.updateResultByEno(eno, member.getExamList().length);
+		examMapper.updateResultByEno(eno, member.getExamList().length, member.getExamList()[member.getExamList().length-1].getWno());
 	}
 
 	@Override

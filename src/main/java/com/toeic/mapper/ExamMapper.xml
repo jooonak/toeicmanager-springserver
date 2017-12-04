@@ -45,16 +45,21 @@
 		select 
 			vno, tbl_review_detail.wno wno, word, meaning, img, sentence
 		from
-			(select 
-				wno, (@rnum := @rnum + 1) - (select result from tbl_exam where eno = #{examPointer} and type = 'review') as rnum 
+		(
+			select 
+				dno, wno
 			from 
-				tbl_exam_detail, ( select @rnum := 0 ) rnum
+				tbl_exam_detail
 			where 
 				dno > 0 and result = 'x' and mid = #{mid}
-			having rnum > 0
-			order by 
-			dno) tbl_review_detail
-		Left join tbl_word
-		on tbl_review_detail.wno = tbl_word.wno
+			having 
+			(case when (select result from tbl_exam where eno = #{examPointer}) = 0 then
+				(dno >= (select dno from tbl_exam_detail where wno = (select startpoint from tbl_exam where eno = #{examPointer} and type = 'review') and mid = #{mid} order by dno)) 
+			else
+				(dno > (select dno from tbl_exam_detail where wno = (select startpoint from tbl_exam where eno = #{examPointer} and type = 'review') and mid = #{mid} order by dno)) 
+			end)
+		) tbl_review_detail
+		Left join 
+			tbl_word on tbl_review_detail.wno = tbl_word.wno
 	</select>
 </mapper> 
