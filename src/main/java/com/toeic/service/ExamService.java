@@ -15,4 +15,6 @@ public interface ExamService {
 	
 	public void updateTodayExam(MemberDTO member);
 
+	public void newExamTime(String mid);
+
 }

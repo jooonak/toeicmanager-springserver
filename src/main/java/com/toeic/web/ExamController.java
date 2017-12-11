@@ -33,7 +33,7 @@ public class ExamController {
 	
 	@GetMapping("/all")
 	public List<CycleDTO> getList(String mid){
-		return service.getCycleList("m3");
+		return service.getCycleList("m1");
 	}
 	
 	@GetMapping("/today")
@@ -45,6 +45,12 @@ public class ExamController {
 	@PutMapping("/today")
 	public void updateTodayExam(@RequestBody MemberDTO member) {
 		service.updateTodayExam(member);
+	}
+	
+	@PostMapping("/timecheck")
+	public void newExamTime(String mid) {
+		service.newExamTime(mid);
+	
 	}
 	
 }
