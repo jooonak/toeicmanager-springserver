@@ -5,7 +5,7 @@ import com.toeic.dto.ExamDTO;
 import com.toeic.dto.MemberDTO;
 import com.toeic.dto.WordDTO;
 
-public interface AnmoExamService {
+public interface LearnService {
 	
 	public List<ExamDTO> getExam(String mid);
 

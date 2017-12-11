@@ -29,10 +29,11 @@ public class LoginController {
 	}
 
 	@PostMapping("/")
-	public void login() {
-
+	public MemberDTO login(@RequestBody MemberDTO member) {
 		
-		log.info("guest@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		log.info(""+member);
+
+		return service.checkMember(member);
 	}
 
 }

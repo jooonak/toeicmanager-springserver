@@ -19,4 +19,9 @@ public class LoginServiceImpl implements LoginService{
 		
 	}
 
+	@Override
+	public MemberDTO checkMember(MemberDTO member) {
+		return mapper.getMemberByIDAndPW(member);
+	}
+
 }

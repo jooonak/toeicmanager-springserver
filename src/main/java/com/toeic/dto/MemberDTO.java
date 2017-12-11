@@ -19,6 +19,7 @@ public class MemberDTO {
 	private Date toeic; //시험 날짜
 	private Date pushAm; //오전 푸쉬알림 날짜
 	private Date pushPm; //오후 푸쉬알림 날짜
+	private String pushToken;
 	
 	/* 아래의 정보들은 회원의 시험 상태를 기록하는 변수들이며, 이는 회원 정보와 분리하여 관리할 필요가 있는 데이터들이다.
 	 * 추후 시스템의 성능향상을 위해 member테이블에서 분리(정규화)하여 관리할 예정이다.

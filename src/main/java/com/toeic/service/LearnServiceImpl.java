@@ -15,7 +15,7 @@ import com.toeic.mapper.ExamMapper;
 
 @Transactional
 @Service
-public class AnmoExamServiceImpl implements AnmoExamService {
+public class LearnServiceImpl implements LearnService {
 	
 	@Inject
 	private ExamMapper examMapper;
@@ -41,6 +41,7 @@ public class AnmoExamServiceImpl implements AnmoExamService {
 
 	@Override
 	public String updateFinishedExam(MemberDTO member, Integer eno) {
+		System.out.println(member);
 		String status = (member.getExamPointer() - eno > 0)?"next": "end"; 
 		updateMiddleExam(member, eno);
 		if(member.getExamPointer() == eno && member.getLstatus().equals("lock")) {

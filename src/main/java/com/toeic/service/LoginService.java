@@ -5,6 +5,8 @@ import com.toeic.dto.MemberDTO;
 public interface LoginService {
 
 	public void joinMember(MemberDTO dto);
+
+	public MemberDTO checkMember(MemberDTO member);
 	
 
 }

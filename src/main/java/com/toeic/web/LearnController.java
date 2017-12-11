@@ -15,7 +15,7 @@ import com.toeic.dto.ExamDTO;
 import com.toeic.dto.MemberDTO;
 
 import com.toeic.dto.WordDTO;
-import com.toeic.service.AnmoExamService;
+import com.toeic.service.LearnService;
 
 import lombok.extern.java.Log;
 
@@ -26,15 +26,15 @@ import lombok.extern.java.Log;
 @CrossOrigin
 @RestController
 @RequestMapping("/learn/*")
-public class AnmoExamController {
+public class LearnController {
 	
 	@Inject
-	private AnmoExamService service;
+	private LearnService service;
 	
 	//시험에 대한 전반적인 정보(할당된 시험문제 량,시험당 등록된 날짜 등)
-	@GetMapping("/")
-	public List<ExamDTO> getExamInfo () {
-		return service.getExam("m1"); //test용
+	@GetMapping("/{mid}")
+	public List<ExamDTO> getExamInfo (@PathVariable("mid") String mid) {
+		return service.getExam(mid);
 		
 	}
 	

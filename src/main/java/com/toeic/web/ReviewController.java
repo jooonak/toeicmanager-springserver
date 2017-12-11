@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.toeic.dto.ExamDTO;
 import com.toeic.dto.MemberDTO;
 import com.toeic.dto.WordDTO;
-import com.toeic.service.AnmoExamService;
+import com.toeic.service.LearnService;
 import com.toeic.service.ReviewService;
 
 @CrossOrigin
@@ -42,7 +42,6 @@ public class ReviewController {
 	@PutMapping("/middle")
 	public void updateMiddleReviewInfo (@RequestBody MemberDTO member) {
 		//json의 배열형태의 데이터를 스프링에서 list형태로 받으려면 여러 작업을 해야한다(wapper class를 생성한다던지..) 그렇기 때문에 배열형태로 받는 것이 편리하다.
-		System.out.println("middle==========="+member);
 		System.out.println(member.getExamList()[member.getExamList().length-1].getWno());
 		service.updateMiddleReview(member);
 	}
@@ -56,6 +55,7 @@ public class ReviewController {
 		if(!member.getLstatus().equals("review")) {
 			return "reject: no review status";
 		}
+		//learn 리턴
 		return service.updateFinishedReview(member);
 	}
 
