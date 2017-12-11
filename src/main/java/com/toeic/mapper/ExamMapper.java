@@ -35,5 +35,8 @@ public interface ExamMapper {
 	
 	@Select("call update_finished_exam(#{mid}, #{examPointer}, @lstatus)")
 	public String updateAndCheckMemberStatus(MemberDTO member);
+
+	@Select("select * from tbl_exam where mid = #{mid}")
+	public List<ExamDTO> getGoalDataById(String mid);
 	
 }

@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,5 +42,10 @@ public class ExamController {
 	public void updateTodayExam(@RequestBody MemberDTO member) {
 		service.updateTodayExam(member);
 	}
-
+	
+	@PostMapping("/timecheck")
+	public void newExamTime(String mid) {
+		service.newExamTime(mid);
+	
+	}
 }
