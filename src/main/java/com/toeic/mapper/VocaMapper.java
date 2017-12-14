@@ -8,15 +8,16 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.toeic.dto.MemberDTO;
 import com.toeic.dto.VocaDTO;
 
 public interface VocaMapper {
 
-	@Select("select * from tbl_voca")
-	public List<VocaDTO> getList();
+	@Select("select * from (select * from tbl_voca where owner = 'SYSTEM' or owner = #{member.mid}) tbl_voca  where gubun =1000 or gubun <=#{member.goal}")
+	public List<VocaDTO> getList(@Param("member") MemberDTO member);
 
-	@Insert("insert into tbl_voca(vname) values (#{vname})")
-	public void newVoca(String vname);
+	@Insert("insert into tbl_voca(vname, owner) values (#{dto.vname}, #{dto.owner})")
+	public void newVoca(@Param("dto") VocaDTO dto);
 
 	@Update("update tbl_voca set vname = #{voca.vname} where vno = #{vno}")
 	public void updateVoca(@Param("vno") int vno, @Param("voca") VocaDTO voca);

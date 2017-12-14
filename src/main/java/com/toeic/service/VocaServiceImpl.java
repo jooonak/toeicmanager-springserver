@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.toeic.dto.MemberDTO;
 import com.toeic.dto.VocaDTO;
 import com.toeic.mapper.VocaMapper;
 
@@ -18,15 +19,15 @@ public class VocaServiceImpl implements VocaService{
 	VocaMapper mapper;
 	
 	@Override
-	public List<VocaDTO> getList() {
+	public List<VocaDTO> getList(MemberDTO member) {
 		// TODO Auto-generated method stub
-		return mapper.getList();
+		return mapper.getList(member);
 	}
 
 	@Override
-	public void newVoca(String vname) {
+	public void newVoca(VocaDTO dto) {
 		// TODO Auto-generated method stub
-		mapper.newVoca(vname);
+		mapper.newVoca(dto);
 	}
 
 	@Override
