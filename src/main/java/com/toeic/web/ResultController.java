@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.toeic.dto.CycleDTO;
 import com.toeic.dto.ExamDTO;
+import com.toeic.dto.WiseDTO;
 import com.toeic.service.ResultService;
 
 import lombok.extern.java.Log;
@@ -43,6 +44,11 @@ public class ResultController {
 	@GetMapping("/")
 	public List<CycleDTO> getResult(String mid){
 		return service.getResult("m1");
+	}
+	
+	@GetMapping("/wise")
+	public List<WiseDTO> getWiseSaying(){
+		return service.getWiseSaying();
 	}
 }
 

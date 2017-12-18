@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.toeic.dto.CycleDTO;
 import com.toeic.dto.ExamDTO;
+import com.toeic.dto.WiseDTO;
 
 public interface ResultService {
 
@@ -15,6 +16,8 @@ public interface ResultService {
 	public Map<String, List<? extends Object>> getGoalData(String mid);
 
 	public List<CycleDTO> getResult(String mid);
+
+	public List<WiseDTO> getWiseSaying();
 
 	
 
