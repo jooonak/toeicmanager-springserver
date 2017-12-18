@@ -24,4 +24,9 @@ public class LoginServiceImpl implements LoginService{
 		return mapper.getMemberByIDAndPW(member);
 	}
 
+	@Override
+	public void updateMemberToken(MemberDTO member) {
+		mapper.updateMemberToken(member);
+	}
+
 }

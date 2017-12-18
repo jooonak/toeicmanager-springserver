@@ -26,4 +26,5 @@ public class CycleDTO {
 	private Date nextCycle; //다음 시험날짜
 	private Date lastExamDate; //마지막으로 시험 친 날짜
 	private Date regdate; //등록된 날짜
+	private int cycleCnt;
 }

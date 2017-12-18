@@ -35,6 +35,7 @@ public class WordController {
 	
 	@PostMapping("/vocabulary/{vno}/words")
 	public void newWord(@PathVariable("vno") int vno, @RequestBody WordDTO word) {
+		System.out.println(word);
 		service.newWord(vno, word);
 	}
 	
