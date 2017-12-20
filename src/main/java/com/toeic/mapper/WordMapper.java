@@ -18,7 +18,7 @@ public interface WordMapper {
 	@Select("select * from tbl_word where wno = #{wno} and vno = #{vno}")
 	public WordDTO getWord(@Param("vno") int vno, @Param("wno") int wno);
 
-	@Insert("insert into tbl_word(vno, word, meaning) values(#{vno}, #{word.word}, #{word.meaning})")
+	@Insert("insert into tbl_word(vno, word, meaning, img, sentence) values(#{vno}, #{word.word}, #{word.meaning}, #{word.img}, #{word.sentence})")
 	public void newWord(@Param("vno") int vno, @Param("word") WordDTO word);
 	
 	@Update("update tbl_word set meaning = #{word.meaning} where vno = #{vno} and wno = #{word.wno}")

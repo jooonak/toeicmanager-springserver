@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.mysql.fabric.xmlrpc.base.Member;
 import com.toeic.dto.MemberDTO;
 
 public interface MemberMapper {
@@ -20,5 +19,8 @@ public interface MemberMapper {
 	
 	@Update("update tbl_member set lstatus = 'learn' where mid = #{mid}")
 	public void ChangeLstatusFromReviewToLearn(String mid);
+
+	@Update("update tbl_member set pushToken = #{pushToken} where mid = #{mid}")
+	public void updateMemberToken(MemberDTO member);
 
 }

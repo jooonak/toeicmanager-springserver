@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,11 @@ public class LoginController {
 		log.info(""+member);
 
 		return service.checkMember(member);
+	}
+	
+	@PutMapping("/token")
+	public void refreshToken(@RequestBody MemberDTO member) {
+		service.updateMemberToken(member);
 	}
 
 }

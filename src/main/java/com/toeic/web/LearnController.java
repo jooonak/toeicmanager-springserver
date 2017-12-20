@@ -32,8 +32,8 @@ public class LearnController {
 	private LearnService service;
 	
 	//시험에 대한 전반적인 정보(할당된 시험문제 량,시험당 등록된 날짜 등)
-	@GetMapping("/{mid}")
-	public List<ExamDTO> getExamInfo (@PathVariable("mid") String mid) {
+	@GetMapping("/")
+	public List<ExamDTO> getExamInfo (String mid) {
 		return service.getExam(mid);
 		
 	}

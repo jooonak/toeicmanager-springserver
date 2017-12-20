@@ -7,6 +7,8 @@ public interface LoginService {
 	public void joinMember(MemberDTO dto);
 
 	public MemberDTO checkMember(MemberDTO member);
+
+	public void updateMemberToken(MemberDTO member);
 	
 
 }
