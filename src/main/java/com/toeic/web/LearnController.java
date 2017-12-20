@@ -35,7 +35,6 @@ public class LearnController {
 	@GetMapping("/")
 	public List<ExamDTO> getExamInfo (String mid) {
 		return service.getExam(mid);
-		
 	}
 	
 	@GetMapping("/{eno}")

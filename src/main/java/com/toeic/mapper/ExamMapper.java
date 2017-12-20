@@ -13,7 +13,7 @@ import com.toeic.dto.WordDTO;
 
 public interface ExamMapper {
 
-	@Select("select * from tbl_exam where mid = #{mid} and type = 'learn' and total > result order by eno")
+	@Select("select eno, mid, result, total, dayofmonth(examdate) examdate from tbl_exam where mid = #{mid} and type = 'learn' and total > result order by eno")
 	public List<ExamDTO> getEnoListByMid(String mid);
 	
 	public List<WordDTO> getAnmoWordListByMid(ExamDTO exam);
