@@ -6,16 +6,13 @@ import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.toeic.dto.ExamDTO;
 import com.toeic.dto.MemberDTO;
 import com.toeic.dto.WordDTO;
-import com.toeic.service.LearnService;
 import com.toeic.service.ReviewService;
 
 @CrossOrigin

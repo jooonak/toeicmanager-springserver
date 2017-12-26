@@ -2,7 +2,6 @@ package com.toeic.service;
 
 import java.util.List;
 
-import com.toeic.dto.ExamDTO;
 import com.toeic.dto.MemberDTO;
 import com.toeic.dto.WordDTO;
 

@@ -10,8 +10,6 @@ import com.toeic.dto.MemberDTO;
 import com.toeic.dto.VocaDTO;
 import com.toeic.mapper.VocaMapper;
 
-import lombok.extern.java.Log;
-
 @Service
 public class VocaServiceImpl implements VocaService{
 

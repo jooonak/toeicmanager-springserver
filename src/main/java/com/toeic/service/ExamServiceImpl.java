@@ -7,13 +7,10 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.toeic.dto.CycleDTO;
-import com.toeic.dto.ExamDTO;
 import com.toeic.dto.MemberDTO;
 import com.toeic.dto.WordDTO;
 import com.toeic.mapper.CycleMapper;
-import com.toeic.mapper.ExamMapper;
 import com.toeic.mapper.TimecheckMapper;
-import com.toeic.mapper.WordMapper;
 
 @Service
 public class ExamServiceImpl implements ExamService {

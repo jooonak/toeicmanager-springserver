@@ -41,10 +41,11 @@ public class LearnServiceImpl implements LearnService {
 
 	@Override
 	public String updateFinishedExam(MemberDTO member, Integer eno) {
-		System.out.println(member);
+		System.out.println("updateFinishedExam: "+ member);
 		String status = (member.getExamPointer() - eno > 0)?"next": "end"; 
 		updateMiddleExam(member, eno);
 		if(member.getExamPointer() == eno && member.getLstatus().equals("lock")) {
+			System.out.println("testtestetstews: ");
 			status = examMapper.updateAndCheckMemberStatus(member);
 		}
 		return status;
